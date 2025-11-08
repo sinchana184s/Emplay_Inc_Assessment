@@ -2,8 +2,6 @@
   <div>
     <img src="https://img.shields.io/badge/-Angular-black?style=for-the-badge&logoColor=white&logo=angular&color=DD0031" alt="angular" />
     <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
-    <img src="https://img.shields.io/badge/-RxJS-black?style=for-the-badge&logoColor=white&logo=reactivex&color=B7178C" alt="rxjs" />
-    <img src="https://img.shields.io/badge/-Zod-black?style=for-the-badge&logoColor=white&logo=vercel&color=000000" alt="zod" />
   </div>
   <h1 align="center">Emplay Inc Assessment</h1>
   <h3 align="center">Responsive card manager</h3>
