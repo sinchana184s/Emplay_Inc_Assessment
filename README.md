@@ -5,41 +5,117 @@
     <img src="https://img.shields.io/badge/-RxJS-black?style=for-the-badge&logoColor=white&logo=reactivex&color=B7178C" alt="rxjs" />
     <img src="https://img.shields.io/badge/-Zod-black?style=for-the-badge&logoColor=white&logo=vercel&color=000000" alt="zod" />
   </div>
-
-  <h1 align="center">Emplay Assessment — Angular Client</h1>
-  <h3 align="center">Responsive card manager UI powered by Angular</h3>
+  <h1 align="center">Emplay Inc Assessment</h1>
+  <h3 align="center">Responsive card manager</h3>
 </div>
 
-## 📋 Table of Contents
+A responsive Angular application for displaying and editing cards with dynamic content. Built as part of the Emplay technical assessment.
 
-1. 🤖 [Introduction](#introduction)
-2. ⚙️ [Tech Stack](#tech-stack)
-3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🏗️ [Project Structure](#project-structure)
-6. 📦 [Data & Services](#data-and-services)
-7. 💾 [Storage Behavior](#storage-behavior)
-8. 🧪 [Testing](#testing)
-9. 🛠️ [Available Scripts](#available-scripts)
+## 📋 Overview
 
-## <a name="introduction">🤖 Introduction</a>
+This Angular application displays a list of cards loaded from a JSON file. Users can view card information and edit descriptions through an intuitive modal interface. All changes are persisted within the current session.
 
-This project is a front-end Angular application for the Emplay assessment. It displays a grid of cards sourced from a static JSON file and allows users to update each card’s description. Generated with Angular CLI 19.2.19 and designed with a responsive, dark-themed layout.
+## ⚙️ Tech Stack
 
-## <a name="tech-stack">⚙️ Tech Stack</a>
+- **Angular 19** with Standalone Components
+- **TypeScript**
+- **RxJS** for reactive state management
+- **Zod** for runtime schema validation
 
-### Frontend
-- Angular 19 (Standalone APIs)
-- TypeScript
-- RxJS
-- Zod (runtime schema validation)
+## ✨ Key Features
 
-### Tooling
-- Angular CLI `^19.2.19`
+### Core Functionality
+- ✅ Dynamic card display from JSON data
+- ✅ Edit card descriptions via modal popup
+- ✅ Real-time updates without page reload
+- ✅ Form validation (description cannot be empty)
+- ✅ Session-based persistence
 
-## <a name="features">🔋 Features</a>
+### UI/UX
+- Responsive grid layout (3 columns → 2 → 1 based on screen size)
+- Clean, modern dark theme design
+- Intuitive modal with Save/Cancel actions
+- Mobile-friendly interface
 
-- Responsive card grid (3 columns on desktop, 2 on medium screens, 1 on mobile)
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm
+
+### Installation & Setup
+
+```bash
+# Navigate to the client directory
+cd client
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm start
+```
+
+Open [http://localhost:4200/](http://localhost:4200/) in your browser.
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+Output will be in the `dist/` directory.
+
+## 📁 Project Structure
+
+```
+client/
+├── public/data/cards.json       # Card data source
+├── src/app/
+│   ├── models/card.ts           # Card schema & type definitions
+│   ├── services/card.service.ts # Data management service
+│   ├── app.component.ts         # Main component logic
+│   ├── app.component.html       # Card grid & modal template
+│   └── app.component.css        # Styling
+└── package.json
+```
+
+## 📊 Data Structure
+
+Cards are defined in `public/data/cards.json`:
+
+```json
+[
+  {
+    "id": 1,
+    "card_title": "Project Timeline",
+    "card_description": "Track key milestones and deadlines"
+  }
+]
+```
+
+## 🎯 Assessment Requirements Met
+
+- ✅ Display list of cards with title and description
+- ✅ Edit button on each card
+- ✅ Modal popup for editing descriptions
+- ✅ Dynamic data handling from JSON
+- ✅ Save/Cancel functionality in modal
+- ✅ Form validation
+- ✅ Real-time UI updates
+- ✅ Clean, responsive design
+
+## 🧪 Testing
+
+```bash
+npm test
+```
+
+---
+
+**Developed for Emplay Inc. Technical Assessment**
+
+
 - Static data loading from `public/data/cards.json`
 - Edit card descriptions via a modal dialog
 - Session-based persistence for user edits (per tab/session)
