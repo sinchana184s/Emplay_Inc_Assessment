@@ -13,7 +13,6 @@ export class CardService {
   private readonly storage_key = 'card_manager.cards';
 
   constructor(private readonly http_client: HttpClient, @Inject(PLATFORM_ID) private readonly platform_id: object) {
-    // Hydrate cards from the static JSON file as soon as the service is constructed.
     void this.load_cards();
   }
 
@@ -32,7 +31,6 @@ export class CardService {
     try {
       const validated_payload = card_update_schema.parse({ card_id, updated_description });
       const current_cards = this.cards_subject.getValue();
-      // Rebuild the cards list immutably so Angular can detect the change efficiently.
       const updated_cards = current_cards.map((card) =>
         card.id === validated_payload.card_id
           ? { ...card, card_description: validated_payload.updated_description }

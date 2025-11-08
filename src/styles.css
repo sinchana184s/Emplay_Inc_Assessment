@@ -1,12 +1,12 @@
-/* Global base styles */
+
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #0f1419; /* Match app background */
+  background: #0f1419; 
 }
 
-/* Optional: make box sizing predictable across the app */
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
