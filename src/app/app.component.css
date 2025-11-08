@@ -1,0 +1,374 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #0f1419;
+  color: #ffffff;
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.page {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.page__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.page__title {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #00bcd4;
+}
+
+.page__subtitle {
+  margin: 0;
+  font-size: 1.125rem;
+  color: #8b92a0;
+  font-weight: 400;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: #1a2332;
+  border-radius: 1rem;
+  border: 1px solid #2d3748;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: all 200ms ease;
+}
+
+.card:hover {
+  border-color: #00bcd4;
+  box-shadow: 0 0 0 1px #00bcd4;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.card__description {
+  flex: 1;
+  margin: 0;
+  color: #a0aec0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.card__actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.card__edit {
+  flex: 1;
+  background: #00bcd4;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 150ms ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card__edit:hover {
+  background: #00acc1;
+}
+
+.card__delete {
+  flex: 1;
+  background: transparent;
+  color: #ef4444;
+  border: 2px solid #ef4444;
+  border-radius: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 150ms ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card__delete:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 16rem;
+  border-radius: 1rem;
+  background: #1a2332;
+  border: 1px solid #2d3748;
+  color: #00bcd4;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  background: #00bcd4;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 188, 212, 0.4);
+  transition: all 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.fab:hover {
+  background: #00acc1;
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(0, 188, 212, 0.5);
+}
+
+.fab:active {
+  transform: scale(0.95);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 200ms ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.modal__dialog {
+  position: relative;
+  z-index: 1010;
+  width: min(36rem, calc(100% - 2rem));
+  background: #1e2936;
+  border-radius: 1rem;
+  border: 1px solid #2d3748;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: slideUp 250ms ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal__title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  /* Ensure fields stretch to modal width */
+  align-items: stretch;
+}
+
+.modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.modal__label {
+  font-weight: 600;
+  color: #a0aec0;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modal__textarea {
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  margin: 0;
+  min-height: 8rem;
+  resize: vertical;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #2d3748;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ffffff;
+  background: #0f1419;
+  transition: all 200ms ease;
+  font-family: inherit;
+}
+
+.modal__textarea:focus {
+  outline: none;
+  border-color: #00bcd4;
+  background: #1a2332;
+}
+
+.modal__textarea::placeholder {
+  color: #4a5568;
+}
+
+.modal__error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: -0.5rem;
+}
+
+.modal__actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.modal__button {
+  flex: 1;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 150ms ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modal__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.modal__button--primary {
+  background: #00bcd4;
+  color: #ffffff;
+  order: -1;
+}
+
+.modal__button--primary:hover:not(:disabled) {
+  background: #00acc1;
+}
+
+.modal__button--secondary {
+  background: #2d3748;
+  color: #ffffff;
+}
+
+.modal__button--secondary:hover:not(:disabled) {
+  background: #374151;
+}
+
+/* Medium screens: show two cards per row */
+@media (max-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 2rem 1.25rem 5rem;
+    gap: 2rem;
+  }
+
+  .page__title {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .card__actions {
+    flex-direction: column;
+  }
+
+  .modal__dialog {
+    padding: 2rem;
+  }
+
+  .modal__actions {
+    flex-direction: column;
+  }
+
+  .fab {
+    width: 3.5rem;
+    height: 3.5rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 1.5rem 1rem 4.5rem;
+  }
+}

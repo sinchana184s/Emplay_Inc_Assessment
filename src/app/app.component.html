@@ -1,0 +1,58 @@
+<div class="page">
+  <header class="page__header">
+    <h1 class="page__title">Emplay Inc</h1>
+    <p class="page__subtitle">Organize and manage your content</p>
+  </header>
+
+  <section class="cards" *ngIf="(cards_stream$ | async) as cards; else loading_state">
+    <article class="card" *ngFor="let card of cards; trackBy: track_card">
+      <h2 class="card__title">{{ card.card_title }}</h2>
+      <p class="card__description">{{ card.card_description }}</p>
+      <div class="card__actions">
+        <button type="button" class="card__edit" (click)="open_modal(card)" [attr.aria-label]="'Edit ' + card.card_title">
+          Edit
+        </button>
+      </div>
+    </article>
+  </section>
+
+  <ng-template #loading_state>
+    <div class="loading">
+      <span>Loading cards...</span>
+    </div>
+  </ng-template>
+</div>
+
+<div class="modal" *ngIf="is_modal_open()" (click)="close_modal()">
+  <div class="modal__backdrop"></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="editModalTitle" (click)="$event.stopPropagation()">
+    <header class="modal__header">
+      <h2 id="editModalTitle" class="modal__title">Edit Description</h2>
+    </header>
+    <form class="modal__form" [formGroup]="edit_form" (ngSubmit)="save_description()">
+      <div class="modal__field">
+        <label class="modal__label" for="cardDescription">Description</label>
+        <textarea
+          id="cardDescription"
+          class="modal__textarea"
+          formControlName="card_description"
+          rows="5"
+          placeholder="Enter a detailed description for this card..."
+          [attr.aria-invalid]="edit_form.get('card_description')?.touched && edit_form.get('card_description')?.invalid"
+        ></textarea>
+        <div class="modal__error" *ngIf="edit_form.get('card_description')?.touched && edit_form.get('card_description')?.invalid">
+          Description cannot be empty.
+        </div>
+      </div>
+      <div class="modal__actions">
+        <button type="submit" class="modal__button modal__button--primary" [disabled]="edit_form.invalid || is_saving()">
+          <span *ngIf="!is_saving()">Save Changes</span>
+          <span *ngIf="is_saving()">Saving...</span>
+        </button>
+        <button type="button" class="modal__button modal__button--secondary" (click)="close_modal()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
